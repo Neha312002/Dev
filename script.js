@@ -250,6 +250,8 @@ function startCountdown() {
   }, 1000);
 }
 
+ 
+
 // document.getElementById("skipCountdownButton").addEventListener("click", () => {
 //   clearInterval(countdownInterval); // Stop the countdown
 //   document.getElementById("countdown").style.display = "none";

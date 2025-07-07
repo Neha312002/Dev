@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.browser.min.js"></script>
+   
+    <link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper/swiper-bundle.min.css"
+/>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  </head>
+  <body>
+    <audio id="birthdayMusic" autoplay loop>
+      <source src="assets/birthday.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div id="home">
+      <h1>Hey Bevarsii, Ready for a Surprise? 🎉</h1>
+      <div id="countdown" style="margin-top: 30px; font-size: 2rem; color: white;">
+  Countdown to your special day: <span id="timer">Loading...</span>
+</div>
+
+
+<!--       <button id="skipCountdownButton" style="margin-top: 20px;" onclick="showBirthdayPage()">Can’t wait? Click here 🎉</button> -->
+    </div>
+
+    <div id="birthdayPage">
+      <div id="photoSlider">
+        <div class="flip-card">
+          <div class="flip-card-inner" id="flipCardInner">
+            <div class="flip-card-front">
+              <img id="sliderFrontImage" src="assets/images/photo1.jpg" alt="" />
+            </div>
+            <div class="flip-card-back">
+              <img id="sliderBackImage" src="assets/images/photo2.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <h1 id="happyWish" >🎊 Happy Birthday Devuu! 🎊</h1>
+      <div style="display:flex;justify-content:center;margin-bottom:10px;">
+        <!-- Animated SVG Cake with Flickering Candle -->
+        <svg
+          width="120"
+          height="120"
+          viewBox="0 0 120 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Cake base -->
+          <rect
+            x="20"
+            y="60"
+            width="80"
+            height="40"
+            rx="12"
+            fill="#ffb347"
+            stroke="#d2691e"
+            stroke-width="3"
+          />
+          <!-- Cake icing -->
+          <ellipse
+            cx="60"
+            cy="60"
+            rx="40"
+            ry="12"
+            fill="#fff0f5"
+          />
+          <!-- Candle -->
+          <rect
+            x="56"
+            y="30"
+            width="8"
+            height="28"
+            rx="3"
+            fill="#87ceeb"
+            stroke="#4682b4"
+            stroke-width="2"
+          />
+          <!-- Candle flame -->
+          <ellipse
+            class="candle-flame"
+            cx="60"
+            cy="26"
+            rx="5"
+            ry="10"
+            fill="#ffd700"
+          />
+        </svg>
+      </div>
+      <style>
+        .candle-flame {
+          transform-origin: 60px 26px;
+          animation: flicker 0.7s infinite alternate;
+        }
+        @keyframes flicker {
+          0% {
+            opacity: 1;
+            transform: scaleY(1) scaleX(1);
+          }
+          30% {
+            opacity: 0.7;
+            transform: scaleY(1.1) scaleX(0.95) rotate(-3deg);
+          }
+          60% {
+            opacity: 0.85;
+            transform: scaleY(0.95) scaleX(1.05) rotate(2deg);
+          }
+          100% {
+            opacity: 1;
+            transform: scaleY(1) scaleX(1) rotate(0deg);
+          }
+        }
+      </style>
+      <p id="feelingsText"></p>
+      <button id="cakeButton">Cake 🍰</button>
+      <!-- Cake Modal -->
+      <div id="cakeModal" class="modal">
+        <div class="modal-content" style="text-align:center;">
+          <span class="close-button" id="closeCakeModal">×</span>
+          <img
+            src="assets/cake.gif"
+            alt="Cake"
+            style="max-width:100%;height:auto;"
+          />
+        </div>
+      </div>
+      <button onclick="openBirthdayCard()">Card 🎁</button>
+      <button
+        id="voiceMessageButton"
+        onclick="playVoiceMessage()"
+      >
+        Listen🎙️
+      </button>
+      <audio id="voiceMessage">
+        <source src="assets/voice.mp3" type="audio/mpeg" />
+      </audio>
+      <img
+        id="voicePlayingImage"
+        src="assets/bubu.gif"
+        alt="Voice Playing"
+        style="display:none; width: 250px; margin-top: 20px; border-radius: 15px;"
+      />
+      <button onclick="showMemories()">Memories 📸</button>
+      <!-- Secret Heart Easter Egg -->
+      <span
+        id="secretHeart"
+        style="
+          position:fixed;
+          bottom:18px;
+          right:22px;
+          font-size:2rem;
+          color:#e255a3;
+          opacity:0.5;
+          cursor:pointer;
+          z-index:1000;
+        "
+        >❤️</span
+      >
+      <!-- Secret Star Easter Egg -->
+      <span
+        id="secretStar"
+        style="
+          position:fixed;
+          top:18px;
+          left:22px;
+          font-size:2rem;
+          color:#ffd700;
+          opacity:0.5;
+          cursor:pointer;
+          z-index:1000;
+        "
+        >⭐</span
+      >
+      <!-- Secret Flower Easter Egg -->
+      <span
+        id="secretFlower"
+        style="
+          position:fixed;
+          bottom:18px;
+          left:22px;
+          font-size:2rem;
+          color:#ff69b4;
+          opacity:0.5;
+          cursor:pointer;
+          z-index:1000;
+        "
+        >🌸</span
+      >
+      <!-- Secret Message Modal -->
+      <div id="secretModal" class="modal">
+        <div class="modal-content" style="text-align:center;">
+          <span class="close-button" id="closeSecretModal">×</span>
+          <h2>Secret Message 💌</h2>
+          <p style="font-size:1.2rem;">
+            You found the secret!<br />
+            Our inside joke: <b>“Bevarsii forever!”</b><br />
+            "even if i never say it out loud,this space ,this corner,this heart...always has a spot just for you"
+          </p>
+          <img
+            src="assets/images/photo6.jpg"
+            alt="Secret Memory"
+            style="
+              max-width:80%;
+              border-radius:12px;
+              box-shadow:0 2px 12px #0002;
+            "
+          />
+        </div>
+      </div>
+      <!-- Secret Star Modal -->
+      <div id="secretStarModal" class="modal">
+        <div class="modal-content" style="text-align:center;">
+          <span class="close-button" id="closeSecretStarModal">×</span>
+          <h2>Star Secret ⭐</h2>
+          <p style="font-size:1.2rem;">
+            You discovered the star!<br />
+            Not all stars are in sky.Some are hidden right here...reading this secret you found it😊🌌
+          </p>
+          <img
+            src="assets/images/photo5.jpg"
+            alt="Star Memory"
+            style="
+              max-width:80%;
+              border-radius:12px;
+              box-shadow:0 2px 12px #0002;
+            "
+          />
+        </div>
+      </div>
+      <!-- Secret Flower Modal -->
+      <div id="secretFlowerModal" class="modal">
+        <div class="modal-content" style="text-align:center;">
+          <span class="close-button" id="closeSecretFlowerModal">×</span>
+          <h2>Flower Secret 🌸</h2>
+          <p style="font-size:1.2rem;">
+            You found the flower!<br />
+            Like this flower, our friendship keeps blooming.<br />
+            Here’s a sweet memory:
+          </p>
+          <img
+            src="assets/images/photo33.jpg"
+            alt="Flower Memory"
+            style="
+              max-width:80%;
+              border-radius:12px;
+              box-shadow:0 2px 12px #0002;
+            "
+          />
+        </div>
+      </div>
+    </div>
+</div>
+    <div id="memories">
+      <span
+        class="close-button"
+        id="closeMemories"
+        style="
+          position:absolute;
+          top:18px;
+          right:32px;
+          font-size:2rem;
+          cursor:pointer;
+          z-index:1001;
+        "
+        >×</span
+      >
+      <h1>Our Memories 📸</h1>
+      <div class="gallery">
+        <div class="memory-card">
+          <img src="assets/images/photo11.jpg" alt="Memory 1" />
+        </div>
+        <div class="memory-card">
+          <img src="assets/images/photo22.jpg" alt="Memory 2" />
+        </div>
+        <div class="memory-card">
+          <img src="assets/images/photo33.jpg" alt="Memory 3" />
+        </div>
+        <div class="memory-card">
+          <img src="assets/images/photo44.jpg" alt="Memory 4" />
+        </div>
+      </div>
+      <h1>Thanks for being an awesome friend! ❤️</h1>
+    </div>
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+      <span class="close-lightbox" onclick="closeLightbox()">×</span>
+      <img class="lightbox-content" id="lightboxImage" />
+    </div>
+
+    <div id="birthdayCardModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeBirthdayCard()">×</span>
+        <h1>A Note From Me 💌</h1>
+        <p>
+          "I want you to know that you never have to hide your messy parts or
+          imperfections from me. I’ll embrace every flaw, every fault, because that’s
+          what makes you beautifully you. I promise to be your ✨
+          constant — your protector, your safe place, and your person to run to, no matter what.
+          You’ll always have me in your corner 💖."
+        </p>
+        <img
+          src="assets/images/photo4.JPG"
+          alt="Memory"
+          class="card-image"
+        />
+      </div>
+    </div>
+    <div id="lightOnOverlay">
+      <div class="overlay-content">
+        <h1 style="color:white;">It's Time! 🎉</h1>
+        <button id="turnLightOnButton">Turn the Light On 💡</button>
+      </div>
+    </div>
+    
+    <audio id="lightSwitchSound">
+      <source src="assets/switch.mp3" type="audio/mpeg" />
+    </audio>
+    
+    <div id="flashEffect"></div>
+    <!-- <footer>
+  <p>Made with ❤️ by Neha just for you, Devuu. Your happiness is my favorite thing. ✨</p>
+</footer> -->
+<div id="oopsPage" style="display:none; text-align:center; color:white; padding:50px;">
+  <h1>Oops! 😅</h1>
+  <p style="font-size:1.5rem;">Wait… just testing your patience Curious one, aren’t you? 😏</p>
+  <button id="proceedButton" style="
+    padding: 20px 40px;
+    border: none;
+    border-radius: 30px;
+    background: #ffeb3b;
+    color: #333;
+    font-size: 1.5rem;
+    cursor: pointer;
+    animation: glowPulse 1.5s infinite;
+    margin-top:30px;
+  ">Wanna see, Click 🎉</button>
+</div>
+<script src="script.js" defer></script>
+  </body>
+</html>

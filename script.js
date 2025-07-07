@@ -14,7 +14,7 @@ function showBirthdayPage() {
 }
 
 let photoIndex = 2; // start from 3rd image
-const images = ["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg"];
+const images = ["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.JPG"];
 const flipCardInner = document.getElementById("flipCardInner");
 const frontImage = document.getElementById("sliderFrontImage");
 const backImage = document.getElementById("sliderBackImage");

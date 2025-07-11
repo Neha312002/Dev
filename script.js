@@ -189,7 +189,7 @@ document
 // Declare it globally so you can clear it later
 
 // function startCountdown() {
-//   const countDownDate = new Date("July 06, 2025 00:00:00").getTime();
+//   const countDownDate = new Date("July 13, 2025 00:00:00").getTime();
 //   const timerElement = document.getElementById("timer");
 
 //   const countdownInterval = setInterval(() => {

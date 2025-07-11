@@ -220,7 +220,7 @@ document
 //   }, 1000);
 // }
 function startCountdown() {
-  const countDownDate = new Date("July 13, 2025 00:00:00").getTime();
+  const countDownDate = new Date("July 06, 2025 00:00:00").getTime();
   const timerElement = document.getElementById("timer");
 
   countdownInterval = setInterval(() => {

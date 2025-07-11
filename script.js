@@ -249,7 +249,6 @@ function startCountdown() {
     timerElement.innerHTML = ` ${days}d ${hours}h ${minutes}m ${seconds}s`;
   }, 1000);
 }
-
  
 
 // document.getElementById("skipCountdownButton").addEventListener("click", () => {
